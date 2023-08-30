@@ -71,8 +71,11 @@ class _MyHomePageState extends State<MyHomePage> {
                       '0',
                       style: Theme.of(context).textTheme.headlineMedium,
                     ),
-                  TextField(
-                    controller: controller,
+                  Container(
+                    constraints: const BoxConstraints(maxWidth: 600),
+                    child: TextField(
+                      controller: controller,
+                    ),
                   ),
                   InkWell(
                     onTap: () => _cubit.onPush(),
