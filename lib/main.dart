@@ -36,7 +36,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final _cubit = CccCubit();
-
+  Color color = Colors.white24;
   final controller = TextEditingController();
 
   final key = GlobalKey<FormState>();
@@ -67,19 +67,38 @@ class _MyHomePageState extends State<MyHomePage> {
                       style: Theme.of(context).textTheme.headlineMedium,
                     )
                   else
-                    Text(
-                      '0',
-                      style: Theme.of(context).textTheme.headlineMedium,
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        '0',
+                        style: Theme.of(context).textTheme.headlineMedium,
+                      ),
                     ),
                   Container(
+                    padding: EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        boxShadow: [
+                          BoxShadow(blurRadius: 12, color: Colors.green)
+                        ]),
                     constraints: const BoxConstraints(maxWidth: 600),
                     child: TextField(
                       controller: controller,
                     ),
                   ),
                   InkWell(
+                    onHover: (value) {
+                      if (value) {
+                        setState(() => color = Colors.red);
+                      } else {
+                        setState(() => color = Colors.green);
+                      }
+                    },
                     onTap: () => _cubit.onPush(),
-                    child: const Icon(Icons.add),
+                    child: Icon(
+                      Icons.add,
+                      color: color,
+                    ),
                   ),
                   InkWell(
                     onTap: () => _cubit.onPop(),
